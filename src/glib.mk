@@ -3,9 +3,9 @@
 PKG             := glib
 $(PKG)_WEBSITE  := https://gtk.org/
 $(PKG)_DESCR    := GLib
-$(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 2.50.2
-$(PKG)_CHECKSUM := be68737c1f268c05493e503b3b654d2b7f43d7d0b8c5556f7e4651b870acfbf5
+$(PKG)_IGNORE   := 
+$(PKG)_VERSION  := 2.44.1
+$(PKG)_CHECKSUM := 8811deacaf8a503d0a9b701777ea079ca6a4277be10e3d730d2112735d5eca07
 $(PKG)_SUBDIR   := glib-$($(PKG)_VERSION)
 $(PKG)_FILE     := glib-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://download.gnome.org/sources/glib/$(call SHORT_PKG_VERSION,$(PKG))/$($(PKG)_FILE)
@@ -27,6 +27,7 @@ define $(PKG)_BUILD_DARWIN
     cd '$(BUILD_DIR)' && '$(SOURCE_DIR)/configure' \
         $(MXE_CONFIGURE_OPTS) \
         --enable-regex \
+	--disable-compile-warnings \
         --disable-threads \
         --disable-selinux \
         --disable-inotify \
@@ -55,6 +56,7 @@ define $(PKG)_BUILD_NATIVE
     cd '$(SOURCE_DIR)' && NOCONFIGURE=true ./autogen.sh
     cd '$(BUILD_DIR)' && '$(SOURCE_DIR)/configure' \
         $(MXE_CONFIGURE_OPTS) \
+	--disable-compile-warnings \
         --enable-regex \
         --disable-threads \
         --disable-selinux \
@@ -97,6 +99,7 @@ define $(PKG)_BUILD
     cd '$(SOURCE_DIR)' && NOCONFIGURE=true ./autogen.sh
     cd '$(BUILD_DIR)' && '$(SOURCE_DIR)/configure' \
         $(MXE_CONFIGURE_OPTS) \
+	--disable-compile-warnings \
         --with-threads=win32 \
         --with-pcre=system \
         --with-libiconv=gnu \

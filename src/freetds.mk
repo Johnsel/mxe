@@ -4,8 +4,8 @@ PKG             := freetds
 $(PKG)_WEBSITE  := https://www.freetds.org/
 $(PKG)_DESCR    := FreeTDS
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 1.3.2
-$(PKG)_CHECKSUM := a6586bc9058185f25c6367e4bf288f63a5087c21e6768805cdbf96f6b5561666
+$(PKG)_VERSION  := 1.3.12
+$(PKG)_CHECKSUM := 1c5a86ec40f3475a46a6ecf472aa4126f1add9f7bad1acf268820f1baec6c16b
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.bz2
 $(PKG)_URL      := https://www.freetds.org/files/stable/$($(PKG)_FILE)
@@ -30,7 +30,6 @@ define $(PKG)_BUILD
         --disable-threadsafe \
         --with-tdsver=7.2 \
         --with-openssl \
-        PKG_CONFIG='$(TARGET)-pkg-config' \
-        CFLAGS=-D_WIN32_WINNT=0x0600
+        PKG_CONFIG='$(TARGET)-pkg-config'
     $(MAKE) -C '$(1)' -j '$(JOBS)' install man_MANS=
 endef

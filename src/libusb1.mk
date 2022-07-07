@@ -4,16 +4,11 @@ PKG             := libusb1
 $(PKG)_WEBSITE  := https://libusb.info/
 $(PKG)_DESCR    := LibUsb-1.0
 $(PKG)_IGNORE   :=
-#$(PKG)_VERSION  := 1.0.24
-#$(PKG)_CHECKSUM := 7efd2685f7b327326dcfb85cee426d9b871fd70e22caa15bb68d595ce2a2b12a
-#$(PKG)_SUBDIR   := libusb-$($(PKG)_VERSION)
-#$(PKG)_FILE     := libusb-$($(PKG)_VERSION).tar.bz2
-#$(PKG)_URL      := https://$(SOURCEFORGE_MIRROR)/project/libusb/libusb-1.0/libusb-$($(PKG)_VERSION)/$($(PKG)_FILE)
-$(PKG)_VERSION  := 1.0.20-rc3-event-abstraction-v4
-$(PKG)_CHECKSUM := 58fee7f3f05fda209d14c55763df36ab86028bd9ab82c9bb74f1d5ab3208bcfd
-$(PKG)_SUBDIR   := libusb-event-abstraction-v4
-$(PKG)_FILE     := libusb-event-abstraction-v4.zip
-$(PKG)_URL      := https://github.com/uwehermann/libusb/archive/event-abstraction-v4.zip
+$(PKG)_VERSION  := 1.0.26
+$(PKG)_CHECKSUM := 12ce7a61fc9854d1d2a1ffe095f7b5fac19ddba095c259e6067a46500381b5a5
+$(PKG)_SUBDIR   := libusb-$($(PKG)_VERSION)
+$(PKG)_FILE     := libusb-$($(PKG)_VERSION).tar.bz2
+$(PKG)_URL      := https://$(SOURCEFORGE_MIRROR)/project/libusb/libusb-1.0/libusb-$($(PKG)_VERSION)/$($(PKG)_FILE)
 $(PKG)_DEPS     := cc
 
 define $(PKG)_UPDATE
@@ -24,9 +19,8 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-    cd '$(1)' && autoreconf -i && ./configure \
-        $(MXE_CONFIGURE_OPTS) \
-        CFLAGS=-D_WIN32_WINNT=0x0500
+    cd '$(1)' && ./configure \
+        $(MXE_CONFIGURE_OPTS)
     $(MAKE) -C '$(1)' -j '$(JOBS)' install
 
     '$(TARGET)-gcc' \
